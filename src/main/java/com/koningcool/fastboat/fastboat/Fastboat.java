@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
@@ -23,14 +24,17 @@ public final class Fastboat extends JavaPlugin implements Listener {
         System.out.println(ChatColor.RED + "FastBoat is disabled!");
     }
     @EventHandler
-    public void OnVehicleDrive(VehicleMoveEvent event){
+    public void OnVehicleDrive(VehicleMoveEvent event) {
         Entity vehicle = event.getVehicle();
-        if (vehicle instanceof Boat){
-            Boat boat = (Boat) vehicle;
-            Location loc = boat.getLocation();
-            boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(1.5).getX(), 0, boat.getLocation().getDirection().multiply(1.5).getZ()));
+        Entity passenger = (Entity) event.getVehicle().getPassengers();
+
+        if (vehicle instanceof Boat) {
+            if (passenger instanceof Player) {
+                Player p = (Player) passenger;
+                Boat boat = (Boat) vehicle;
+                boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(1.5).getX(), 0, boat.getLocation().getDirection().multiply(1.5).getZ()));
             }
         }
-
+    }
 
 }
