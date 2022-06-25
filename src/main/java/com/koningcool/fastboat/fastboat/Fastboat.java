@@ -20,7 +20,6 @@ public final class Fastboat extends JavaPlugin implements Listener {
     public void onDisable() {
         System.out.println(ChatColor.RED + "FastBoat is disabled!");
     }
-    @SuppressWarnings("deprecated")
     @EventHandler
     public void OnVehicleDrive(VehicleMoveEvent event){
         Entity vehicle = event.getVehicle();
