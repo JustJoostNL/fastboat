@@ -1,13 +1,14 @@
 package com.koningcool.fastboat.fastboat;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Boat;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.util.Vector;
 
 public final class Fastboat extends JavaPlugin implements Listener {
 
@@ -26,7 +27,8 @@ public final class Fastboat extends JavaPlugin implements Listener {
         Entity vehicle = event.getVehicle();
         if (vehicle instanceof Boat){
             Boat boat = (Boat) vehicle;
-            boat.setVelocity(boat.getVelocity().clone().multiply(10.0D));
+            Location loc = boat.getLocation();
+            boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(2).getX(), 0, boat.getLocation().getDirection().multiply(2).getZ()));
             }
         }
 
