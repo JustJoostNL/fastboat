@@ -25,7 +25,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
         Entity vehicle = event.getVehicle();
         if (vehicle instanceof Boat){
             Boat boat = (Boat) vehicle;
-            boat.setVelocity(boat.getVelocity().multiply(10.0D));
+            boat.setVelocity(boat.getVelocity().multiply(100.0D));
             }
         }
 
