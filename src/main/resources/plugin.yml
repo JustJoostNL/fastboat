@@ -1,0 +1,6 @@
+name: Fastboat
+version: '${project.version}'
+main: com.koningcool.fastboat.fastboat.Fastboat
+api-version: 1.19
+authors: [ koningcool ]
+description: Make boats faster!
