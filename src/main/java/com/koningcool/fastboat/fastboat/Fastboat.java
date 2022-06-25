@@ -28,7 +28,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
         if (vehicle instanceof Boat){
             Boat boat = (Boat) vehicle;
             Location loc = boat.getLocation();
-            boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(2).getX(), 0, boat.getLocation().getDirection().multiply(2).getZ()));
+            boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(1.5).getX(), 0, boat.getLocation().getDirection().multiply(1.5).getZ()));
             }
         }
 
