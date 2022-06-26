@@ -17,9 +17,9 @@ public class boatSetSpeedCommand implements CommandExecutor {
                 } else {
                     if (args.length == 1) {
                         String playerissuedspeed = args[0];
-                        Fastboat.getPlugin().getConfig().set("speedmultiplier", playerissuedspeed);
+                        Fastboat.getPlugin().getConfig().set("speedmultiplier", Float.parseFloat(playerissuedspeed));
                         Fastboat.getPlugin().saveConfig();
-                        Fastboat.getPlugin().boatSpeed = (float) Fastboat.getPlugin().getConfig().getInt("speedmultiplier") / 10;
+                        Fastboat.getPlugin().boatSpeed = Float.parseFloat(playerissuedspeed);
                         p.sendMessage(ChatColor.GREEN + "The speed has changed to " + playerissuedspeed);
                     }
                 }

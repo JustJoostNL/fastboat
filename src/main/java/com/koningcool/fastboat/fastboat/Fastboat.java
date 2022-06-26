@@ -30,7 +30,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
         saveDefaultConfig();
         Objects.requireNonNull(getCommand("setboatspeed")).setExecutor(new boatSetSpeedCommand());
         Objects.requireNonNull(getCommand("boatspeed")).setExecutor(new boatSpeedCommand());
-        plugin.boatSpeed = (float) getConfig().getInt("speedmultiplier") / 10;
+        plugin.boatSpeed = Float.parseFloat(String.valueOf(getConfig().getFloatList("speedmultiplier")));
 
         System.out.println(ChatColor.GREEN + "FastBoat is enabled!");
         System.out.println(ChatColor.RED + "Warning, only change the config file with /setboatspeed [your speed here]");

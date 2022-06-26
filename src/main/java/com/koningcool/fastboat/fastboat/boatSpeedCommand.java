@@ -3,15 +3,14 @@ package com.koningcool.fastboat.fastboat;
 import org.bukkit.ChatColor;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 
 public class boatSpeedCommand implements CommandExecutor {
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission("fastboat.seespeed")) {
-                int speed = Fastboat.getPlugin().getConfig().getInt("speedmultiplier");
-                p.sendMessage("The current configured boat speed is: " + speed);
                 float theboatspeed = Fastboat.getPlugin().boatSpeed;
                 p.sendMessage("The current boat speed is: " + theboatspeed);
             }else {
