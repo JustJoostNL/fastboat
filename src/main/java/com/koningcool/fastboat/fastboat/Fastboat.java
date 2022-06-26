@@ -16,7 +16,7 @@ import java.util.Objects;
 public final class Fastboat extends JavaPlugin implements Listener {
 
     public float boatSpeed;
-    public static Fastboat plugin;
+    private static Fastboat plugin;
 
     @Override
     public void onLoad() {
@@ -65,6 +65,10 @@ public final class Fastboat extends JavaPlugin implements Listener {
 
             }
         }
+    }
+
+    public static Fastboat getPlugin() {
+        return plugin;
     }
 }
 
