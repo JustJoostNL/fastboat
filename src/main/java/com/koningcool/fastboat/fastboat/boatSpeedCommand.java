@@ -11,7 +11,7 @@ public class boatSpeedCommand implements CommandExecutor {
             Player p = (Player) sender;
             if (p.hasPermission("fastboat.seespeed")) {
                 int speed = Fastboat.plugin.getConfig().getInt("speedmultiplier");
-                p.sendMessage("The current boat speed speed is:" + speed);
+                p.sendMessage("The current boat speed speed is: " + speed);
             }else {
                 if (sender instanceof ConsoleCommandSender)
                     System.out.println(ChatColor.RED + "Your not a player!");

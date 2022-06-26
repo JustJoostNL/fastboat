@@ -10,6 +10,8 @@ import org.bukkit.event.vehicle.VehicleMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+
 public final class Fastboat extends JavaPlugin implements Listener {
 
     public static Fastboat plugin;
@@ -40,7 +42,8 @@ public final class Fastboat extends JavaPlugin implements Listener {
     @EventHandler
     public void onVehicleDrive(VehicleMoveEvent event) {
         Entity vehicle = event.getVehicle();
-        Entity passenger = (Entity) event.getVehicle().getPassengers();
+        boolean emptycheck = event.getVehicle().isEmpty();
+        ArrayList passenger = (ArrayList) event.getVehicle().getPassengers();
 
         if (vehicle instanceof Boat) {
             if (passenger instanceof Player) {
