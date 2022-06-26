@@ -12,15 +12,23 @@ import org.bukkit.util.Vector;
 
 public final class Fastboat extends JavaPlugin implements Listener {
 
+    public static Fastboat plugin;
 
     @Override
-    public void onLoad(){
+    public void onLoad() {
         System.out.println(ChatColor.GREEN + "FastBoat loaded!");
     }
 
     @Override
     public void onEnable() {
+        plugin = this;
+        getConfig().options().copyDefaults();
+        saveDefaultConfig();
+        getCommand("setboatspeed").setExecutor(new boatSetSpeedCommand());
+        getCommand("boatspeed").setExecutor(new boatSpeedCommand());
+
         System.out.println(ChatColor.GREEN + "FastBoat is enabled!");
+        System.out.println(ChatColor.RED + "Warning, only change the config file with /setboatspeed [your speed here]");
         getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -28,6 +36,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
     public void onDisable() {
         System.out.println(ChatColor.RED + "FastBoat is disabled!");
     }
+
     @EventHandler
     public void onVehicleDrive(VehicleMoveEvent event) {
         Entity vehicle = event.getVehicle();
@@ -38,7 +47,8 @@ public final class Fastboat extends JavaPlugin implements Listener {
                 Player p = (Player) passenger;
                 Boat boat = (Boat) vehicle;
                 if (p.hasPermission("fastboat.use")) {
-                    boat.setVelocity(new Vector(boat.getLocation().getDirection().multiply(1.5).getX(), 0, boat.getLocation().getDirection().multiply(1.5).getZ()));
+                    int speed = getConfig().getInt("speedmultiplier");
+                    boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(speed).getX(), 0, boat.getLocation().getDirection().clone().multiply(speed).getZ()));
                 } else {
                     p.sendMessage("You do not have permission to use the boat fast, but you can still you the boat!");
                 }

@@ -1,6 +1,15 @@
 name: Fastboat
-version: '${project.version}'
+version: 0.0.1-BETA
 main: com.koningcool.fastboat.fastboat.Fastboat
 api-version: 1.19
 authors: [ koningcool ]
 description: Make boats faster!
+commands:
+  setboatspeed:
+    description: Use this command to set the speed of boats.
+    usage: /setboatspeed [your speed here]
+
+  boatspeed:
+    description: Use this command to get the current boat speed.
+    usage: /boatspeed and you will get the current boat speed in your chat!
+
