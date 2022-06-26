@@ -56,7 +56,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
                 Player p = (Player) passengers.get(0);
                 Boat boat = (Boat) vehicle;
                 if (p.hasPermission("fastboat.use")) {
-                    int speed = getConfig().getInt("speedmultiplier");
+                    float speed = (float) getConfig().getInt("speedmultiplier") / 10;
                     boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(speed).getX(), boat.getLocation().getDirection().clone().getY() , boat.getLocation().getDirection().clone().multiply(speed).getZ()));
                 } else {
                     p.sendMessage("You do not have permission to use the boat fast, but you can still you the boat!");
