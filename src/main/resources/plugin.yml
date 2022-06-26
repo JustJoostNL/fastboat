@@ -8,8 +8,14 @@ commands:
   setboatspeed:
     description: Use this command to set the speed of boats.
     usage: /setboatspeed [your speed here]
+    permission: fastboat.setspeed
+    aliases: sbs
 
   boatspeed:
     description: Use this command to get the current boat speed.
     usage: /boatspeed and you will get the current boat speed in your chat!
+    permission: fastboat.seespeed
+    aliases:
+      - bspeed
+      - bs
 
