@@ -15,6 +15,7 @@ import java.util.Objects;
 
 public final class Fastboat extends JavaPlugin implements Listener {
 
+    public float boatSpeed;
     public static Fastboat plugin;
 
     @Override
@@ -29,6 +30,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
         saveDefaultConfig();
         Objects.requireNonNull(getCommand("setboatspeed")).setExecutor(new boatSetSpeedCommand());
         Objects.requireNonNull(getCommand("boatspeed")).setExecutor(new boatSpeedCommand());
+        plugin.boatSpeed = (float) getConfig().getInt("speedmultiplier") / 10;
 
         System.out.println(ChatColor.GREEN + "FastBoat is enabled!");
         System.out.println(ChatColor.RED + "Warning, only change the config file with /setboatspeed [your speed here]");
@@ -56,8 +58,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
                 Player p = (Player) passengers.get(0);
                 Boat boat = (Boat) vehicle;
                 if (p.hasPermission("fastboat.use")) {
-                    float speed = (float) getConfig().getInt("speedmultiplier") / 10;
-                    boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(speed).getX(), boat.getLocation().getDirection().clone().getY() , boat.getLocation().getDirection().clone().multiply(speed).getZ()));
+                    boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(this.boatSpeed).getX(), boat.getLocation().getDirection().clone().getY() , boat.getLocation().getDirection().clone().multiply(this.boatSpeed).getZ()));
                 } else {
                     p.sendMessage("You do not have permission to use the boat fast, but you can still you the boat!");
                 }
