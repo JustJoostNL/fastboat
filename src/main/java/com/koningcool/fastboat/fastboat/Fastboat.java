@@ -42,12 +42,17 @@ public final class Fastboat extends JavaPlugin implements Listener {
     @EventHandler
     public void onVehicleDrive(VehicleMoveEvent event) {
         Entity vehicle = event.getVehicle();
-        boolean emptycheck = event.getVehicle().isEmpty();
-        ArrayList passenger = (ArrayList) event.getVehicle().getPassengers();
-
+        ArrayList passengers = (ArrayList) event.getVehicle().getPassengers();
+        boolean hasPlayer = false;
+        for (Object entity : passengers) {
+            if (entity instanceof Player) {
+                hasPlayer = true;
+                break;
+            }
+        }
         if (vehicle instanceof Boat) {
-            if (passenger instanceof Player) {
-                Player p = (Player) passenger;
+            if (hasPlayer) {
+                Player p = (Player) passengers.get(0);
                 Boat boat = (Boat) vehicle;
                 if (p.hasPermission("fastboat.use")) {
                     int speed = getConfig().getInt("speedmultiplier");
@@ -60,3 +65,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
         }
     }
 }
+
+
+
+
