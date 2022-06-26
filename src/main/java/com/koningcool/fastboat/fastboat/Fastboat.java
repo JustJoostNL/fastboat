@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public final class Fastboat extends JavaPlugin implements Listener {
 
@@ -26,8 +27,8 @@ public final class Fastboat extends JavaPlugin implements Listener {
         plugin = this;
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-        getCommand("setboatspeed").setExecutor(new boatSetSpeedCommand());
-        getCommand("boatspeed").setExecutor(new boatSpeedCommand());
+        Objects.requireNonNull(getCommand("setboatspeed")).setExecutor(new boatSetSpeedCommand());
+        Objects.requireNonNull(getCommand("boatspeed")).setExecutor(new boatSpeedCommand());
 
         System.out.println(ChatColor.GREEN + "FastBoat is enabled!");
         System.out.println(ChatColor.RED + "Warning, only change the config file with /setboatspeed [your speed here]");
@@ -42,9 +43,9 @@ public final class Fastboat extends JavaPlugin implements Listener {
     @EventHandler
     public void onVehicleDrive(VehicleMoveEvent event) {
         Entity vehicle = event.getVehicle();
-        ArrayList passengers = (ArrayList) event.getVehicle().getPassengers();
+        ArrayList<Entity> passengers = (ArrayList<Entity>) event.getVehicle().getPassengers();
         boolean hasPlayer = false;
-        for (Object entity : passengers) {
+        for (Entity entity : passengers) {
             if (entity instanceof Player) {
                 hasPlayer = true;
                 break;
@@ -56,7 +57,7 @@ public final class Fastboat extends JavaPlugin implements Listener {
                 Boat boat = (Boat) vehicle;
                 if (p.hasPermission("fastboat.use")) {
                     int speed = getConfig().getInt("speedmultiplier");
-                    boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(speed).getX(), 0, boat.getLocation().getDirection().clone().multiply(speed).getZ()));
+                    boat.setVelocity(new Vector(boat.getLocation().getDirection().clone().multiply(speed).getX(), boat.getLocation().getDirection().clone().getY() , boat.getLocation().getDirection().clone().multiply(speed).getZ()));
                 } else {
                     p.sendMessage("You do not have permission to use the boat fast, but you can still you the boat!");
                 }
